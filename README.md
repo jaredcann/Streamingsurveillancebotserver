@@ -16,3 +16,15 @@ _______________________________________
  
 <b>sudo chmod 777 /dev/vchiq</b>
 https://stackoverflow.com/questions/42583835/failed-to-open-vchiq-instance/42584382
+
+
+
+Adding the microhone through bash commands
+
+____________________________________________
+https://www.seeedstudio.com/blog/2019/08/08/how-to-use-usb-mini-microphone-on-raspberry-pi-4/
+_____________________________________________________________
+
+The pwm messed up the sound from aux cord, must define explicit pwm signal in a precompiled .cpp program that way it doesnt leak and ruin the audio quality
+
+Wiring -pi does not allow for graceful using of the aux port for audio
