@@ -28,3 +28,7 @@ _____________________________________________________________
 The pwm messed up the sound from aux cord, must define explicit pwm signal in a precompiled .cpp program that way it doesnt leak and ruin the audio quality
 
 Wiring -pi does not allow for graceful using of the aux port for audio
+
+_____________________________________________________________
+audio live streaming/broadcasting with darkice and icecast2
+https://technicalustad.com/live-streaming-of-mp3-using-darkice-and-icecast2-on-raspberry-pi/
