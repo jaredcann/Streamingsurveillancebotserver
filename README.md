@@ -1,14 +1,16 @@
 # Streamingsurveillancebotserver
 
+1. Explain project idea
+2. Provide instructions, code, and hardware setups
+   - add photo or graph that might help instructing
+3. Photo and video of the final result
 
 
-
-
-_
+______
 Web Page Instruction from Dr. Hamblen
 
 The web page should explain the project idea, provide instructions, code, and hardware setups so that anyone could recreate your project along with photos and videos along with team member names. It might make sense to have a longer video on the web page (since presentation time is so short). Documentation somewhat like a notebook page can be added in Github. Be sure to setup Github so that a password logon is not needed to view the site.
-_
+______
 When creating the shell script file make sure that the first line (the Hash-Bang Hack) is not begin with a space. If the shell script is generated properly, when reopening it after saving, the auto-coloring will be applied.
 _______________________________________
 Other than configuring the path in lighttpd.conf to find the index.html, the cgi enable need to be configure too using 
