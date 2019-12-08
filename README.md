@@ -37,9 +37,29 @@ _____
 
 ______
 
-Web Page Instruction from Dr. Hamblen
+# Web Page Instruction from Dr. Hamblen
 
 The web page should explain the project idea, provide instructions, code, and hardware setups so that anyone could recreate your project along with photos and videos along with team member names. It might make sense to have a longer video on the web page (since presentation time is so short). Documentation somewhat like a notebook page can be added in Github. Be sure to setup Github so that a password logon is not needed to view the site.
+_________________
+
+
+# Hardware setup
+___________________________
+* Raspberry pi-4
+* Dc-motor and wheel chassis
+* 
+* [Mini Portable Speaker, 3W Mobile Phone Speaker Line-in Speaker 3.5mm AUX Audio Interface ](https://www.amazon.com/gp/product/B07RJR1XPH/ref=ppx_yo_dt_b_asin_title_o00_s00?ie=UTF8&psc=1) 
+*
+
+
+
+
+
+
+
+
+
+
 
 ______
 
