@@ -46,12 +46,22 @@ _________________
 # Hardware setup
 ___________________________
 * Raspberry pi-4
-* Dc-motor and wheel chassis
-* 
+* [4WD DC-motor and chassis](https://www.amazon.com/Robot-Chassis-Motor-Arduino-Raspberry/dp/B07F759T89/ref=asc_df_B07F759T89/?tag=hyprod-20&linkCode=df0&hvadid=312123579962&hvpos=1o2&hvnetw=g&hvrand=4023891843030921682&hvpone=&hvptwo=&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=1015254&hvtargid=pla-572041604638&psc=1&tag=&ref=&adgrpid=65834404201&hvpone=&hvptwo=&hvadid=312123579962&hvpos=1o2&hvnetw=g&hvrand=4023891843030921682&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=1015254&hvtargid=pla-572041604638)
+* sparkfun h-bridge motor driver  
 * [Mini Portable Speaker, 3W Mobile Phone Speaker Line-in Speaker 3.5mm AUX Audio Interface ](https://www.amazon.com/gp/product/B07RJR1XPH/ref=ppx_yo_dt_b_asin_title_o00_s00?ie=UTF8&psc=1) 
-*
+* 2 servos
+* [no Infared filter pi camera and Infared LED lights](https://www.amazon.com/Raspberry-Haiworld-Version-Megapixel-Infrared/dp/B01MYUOQ0A/ref=sr_1_5?keywords=pi+module+ir+camera&qid=1573746119&sr=8-5)
+* Portable cellular battery charger
+* 4 AA batteries and holder
+* [Top plate of red robot chassis](https://www.sumozade.com/magician-robot-chassis-kit---red-455)
 
 
+_____________________________________
+
+#Hook up Guide
+
+
+ConnectPi-4 to 
 
 
 
