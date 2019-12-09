@@ -117,10 +117,13 @@ camera stream window added to Web page and start up stream added to rc.local
 
 LD_LIBRARY_PATH=/opt/mjpg-streamer/ /opt/mjpg-streamer/mjpg_streamer -i "input_raspicam.so -fps 15 -q 50 -x 640 -y 480" -o "output_http.so -p 9000 -w /opt/mjpg-streamer/www" &
 _______________________________________
+ # Setup of Audio streaming
  
+ For audio streaming service used
+ 
+ To allow the actual audio to be streamed the following command needed to be used to give execution access to "vchiq"
 <b>sudo chmod 777 /dev/vchiq</b>
 https://stackoverflow.com/questions/42583835/failed-to-open-vchiq-instance/42584382
-
 
 
 Adding the microphone through bash commands
@@ -128,6 +131,7 @@ Adding the microphone through bash commands
 ____________________________________________
 https://www.seeedstudio.com/blog/2019/08/08/how-to-use-usb-mini-microphone-on-raspberry-pi-4/
 _____________________________________________________________
+
 
 The pwm messed up the sound from aux cord, must define explicit pwm signal in a precompiled .cpp program that way it doesnt leak and ruin the audio quality
 
