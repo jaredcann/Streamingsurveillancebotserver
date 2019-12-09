@@ -58,10 +58,8 @@ ___________________________
 
 _____________________________________
 
-#Hook up Guide
+# Hook up Guide
 
-
-ConnectPi-4 pins
 
 <b> H-bridge Pin Connections</b>
 
