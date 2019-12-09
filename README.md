@@ -67,33 +67,34 @@ Red and black power wires connects to 4AA batteries power rail
 ![Back view](/Assets/IMG_1389.jpg)
 
 <br>
-Link to video [Demo](https://youtu.be/eEnGLcFCr18)  https://youtu.be/eEnGLcFCr18
+
+Link to video Demo:  https://youtu.be/eEnGLcFCr18
 
 _____
 # Software setup
 
 ## Setting up and install wiringPi
+```
+$ git clone git://git.drogon.net/wiringPi
 
-<b>$ git clone git://git.drogon.net/wiringPi</b>
+$ cd wiringPi
 
-<b>$ cd wiringPi</b>
-
-<b>$ ./build</b>
-
+$ ./build
+```
 <br><br>
 ## Setting up and install lighttpd 
+```
+$ sudo apt-get -y install lighttpd
 
-<b>$ sudo apt-get -y install lighttpd</b>
+$ sudo lighttpd-enable-mod cgi
 
-<b>$ sudo lighttpd-enable-mod cgi</b>
-
-<b>$ sudo lighttpd-enable-mod fastcgi</b>
-
+$ sudo lighttpd-enable-mod fastcgi
+```
 Changing the lighttpd config file 
 
 Changing where the config file is looking for index.html file to "/var/www" instead of its default of "/var/www/html"
 
-Config file location " sudo nano /etc/lighttpd/lighttpd.conf "
+Config file location `$ sudo nano /etc/lighttpd/lighttpd.conf`
 
 Other than configuring the path in lighttpd.conf to find the index.html, the cgi enable need to be configure too using
 
