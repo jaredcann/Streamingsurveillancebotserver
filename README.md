@@ -109,7 +109,7 @@ $ sudo /etc/init.d/lighttpd stop
 $ sudo /etc/init.d/lighttpd start
 ```
 <br><br>
-## Install and setup mjpg-streamer for Video streaming over web
+## Install and setup mjpg-streamer for video streaming over web
 ```
 $ sudo apt-get update
 
@@ -188,43 +188,43 @@ cd
 <br><br>
 ## Darkice and Icecast2 setup for audio broadcast
 
-To install Darkice into raspbian, first in terminal run,<br>
+To install Darkice into raspbian, first in terminal run:
 
-<b>$ sudo apt-get update</b>
+`$ sudo apt-get update`
 
 Then add a deb-src repository to your sources list at /home/pi:
+```
+$ cd
 
-<b>$ cd</b>
+$ wget https://github.com/x20mar/darkice-with-mp3-for-raspberry-pi/blob/master/darkice_1.0.1-999~mp3+1_armhf.deb?raw=true
 
-<b>$ wget https://github.com/x20mar/darkice-with-mp3-for-raspberry-pi/blob/master/darkice_1.0.1-999~mp3+1_armhf.deb?raw=true</b>
-
-<b>$ mv darkice_1.0.1-999\~mp3+1_armhf.deb?raw=true darkice_1.0.1-999~mp3+1_armhf.deb</b>
-
+$ mv darkice_1.0.1-999~mp3+1_armhf.deb?raw=true darkice_1.0.1-999~mp3+1_armhf.deb
+```
 Install Darkice using the newly added repository
+```
+$ sudo apt-get install libmp3lame0 libtwolame0
 
-<b>$ sudo apt-get install libmp3lame0 libtwolame0</b>
-
-<b>$ sudo dpkg -i darkice_1.0.1-999~mp3+1_armhf.deb</b>
-
+$ sudo dpkg -i darkice_1.0.1-999~mp3+1_armhf.deb
+```
 Once it is installed, from the Github, download and move the config file for Darkice , darckice.cfg, and the shell script darkice.sh to /home/pi. Make darkice.sh into executable 
 
-<b>$ sudo chmod 777 /home/pi/darkice.sh</b>
+`$ sudo chmod 777 /home/pi/darkice.sh`
 
 Then go to rc.local to execute this shell script on boot up
 
-<b>$ sudo nano /etc/rc.local</b>
+`$ sudo nano /etc/rc.local`
 
 At the bottom of the page before exit 0 add
 
-<b>sudo /home/pi/darkice.sh</b>
+`sudo /home/pi/darkice.sh`
 
 Once darkice is installed and configure, follow these steps to activate the Icecast2 server.
 
-<b>$ sudo apt-get install icecast2</b>
+`$ sudo apt-get install icecast2`
 
 Follow through the configuration window, I suggest keep the default setting and press yes and ok for all setting. Next, start the Icecast2 server service by typing this command 
 
-<b>$ sudo service icecast2 start</b>
+`$ sudo service icecast2 start`
 
 <br><br>
 ## Omxplayer setup for audio warning signal output
@@ -233,46 +233,26 @@ since omxplayer is build-in not much setup to be done other than some permission
 
 To allow the actual audio to be streamed from web page the following command needed to be used to give execution access to "vchiq"
 
-<b>$ sudo chmod 777 /dev/vchiq</b>
+`$ sudo chmod 777 /dev/vchiq`
 
 <br></br>
 ## CGI file location and creation
 
 Once the library is intalled and setup, from the Github, download and move the cgi-bin folder into /var/www/
 
-To make sure all the file are executable, run,
+To make sure all the file are executable, run:
+```
+$ cd /var/www/cgi-bin
 
-<b>$ cd /var/www/cgi-bin</b>
-
-<b>$ sudo chmod 755 [filename]</b>
-
+$ sudo chmod 755 [filename]
+```
 For each of the cgi file using their corresponding filename such as,
 
-<b>$ sudo chmod 755 forward.cgi</b>
+`$ sudo chmod 755 forward.cgi`
 
-Other than the given shell script, when creating new shell script file make sure that the first line (the Hash-Bang Hack, #!/bin/bash) is not begin with a space. If the shell script is generated properly, when reopening it after saving, the auto-coloring will be applied.
+Other than the given shell script, when creating new shell script file make sure that the first line (the Hash-Bang Hack, `#!/bin/bash`) is not begin with a space. If the shell script is generated properly, when reopening it after saving, the auto-coloring will be applied.
 
 <br><br>
 ## Web page location
 
 With all the shell scripts and library in place, the web page content can be obtain by downloading and moving the index.html, indexMobile.html, sounds, and image file and folder to /var/www/ for the lighttpd web server to read. 
-
-
-
-
-
-_______________________________________
-camera stream window added to Web page and start up stream added to rc.local
-
-
-LD_LIBRARY_PATH=/opt/mjpg-streamer/ /opt/mjpg-streamer/mjpg_streamer -i "input_raspicam.so -fps 15 -q 50 -x 640 -y 480" -o "output_http.so -p 9000 -w /opt/mjpg-streamer/www" &
-
-____________________________________________
-https://www.seeedstudio.com/blog/2019/08/08/how-to-use-usb-mini-microphone-on-raspberry-pi-4/
-_____________________________________________________________
-
-
-The pwm messed up the sound from aux cord, must define explicit pwm signal in a precompiled .cpp program that way it doesnt leak and ruin the audio quality
-
-Wiring -pi does not allow for graceful using of the aux port for audio
-
