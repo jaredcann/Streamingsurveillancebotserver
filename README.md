@@ -98,41 +98,41 @@ Config file location `$ sudo nano /etc/lighttpd/lighttpd.conf`
 
 Other than configuring the path in lighttpd.conf to find the index.html, the cgi enable need to be configure too using
 
-<b>sudo nano /etc/lighttpd/conf-enabled/10-cgi.conf</b>
+`sudo nano /etc/lighttpd/conf-enabled/10-cgi.conf`
 
 In the $http ["url"] section make sure the alias.url is directed to the right file path. In our case it should be /var/www/cgi-bin. Some people also have success configuring it in the lighttpd.conf file and follow the same step, but we have not try it.
 
 Start and stop lighttpd service
+```
+$ sudo /etc/init.d/lighttpd stop
 
-<b>$ sudo /etc/init.d/lighttpd stop</b>
-
-<b>$ sudo /etc/init.d/lighttpd start</b>
-
+$ sudo /etc/init.d/lighttpd start
+```
 <br><br>
 ## Install and setup mjpg-streamer for Video streaming over web
+```
+$ sudo apt-get update
 
-<b>$ sudo apt-get update</b>
+$ sudo apt-get upgrade
 
-<b>$ sudo apt-get upgrade</b>
+$ sudo apt-get install libjpeg62-turbo-dev
 
-<b>$ sudo apt-get install libjpeg62-turbo-dev</b>
+$ sudo apt-get install cmake
 
-<b>$ sudo apt-get install cmake</b>
+$ git clone https://github.com/jacksonliam/mjpg-streamer.git ~/mjpg-streamer
 
-<b>$ git clone https://github.com/jacksonliam/mjpg-streamer.git ~/mjpg-streamer</b>
+$ cd ~/mjpg-streamer/mjpg-streamer-experimental
 
-<b>$ cd ~/mjpg-streamer/mjpg-streamer-experimental</b>
+$ make clean all
 
-<b>$ make clean all</b>
+$ sudo rm -rf /opt/mjpg-streamer
 
-<b>$ sudo rm -rf /opt/mjpg-streamer</b>
+$ sudo mv ~/mjpg-streamer/mjpg-streamer-experimental /opt/mjpg-streamer
 
-<b>$ sudo mv ~/mjpg-streamer/mjpg-streamer-experimental /opt/mjpg-streamer</b>
-
-<b>$ sudo rm -rf ~/mjpg-streamer</b>
-
--Test stream<br>
-<b>LD_LIBRARY_PATH=/opt/mjpg-streamer/ /opt/mjpg-streamer/mjpg_streamer -i "input_raspicam.so -fps 15 -q 50 -x 640 -y 480" -o "output_http.so -p 9000 -w /opt/mjpg-streamer/www" </b>
+$ sudo rm -rf ~/mjpg-streamer
+```
+- Test stream<br>
+`LD_LIBRARY_PATH=/opt/mjpg-streamer/ /opt/mjpg-streamer/mjpg_streamer -i "input_raspicam.so -fps 15 -q 50 -x 640 -y 480" -o "output_http.so -p 9000 -w /opt/mjpg-streamer/www"`
 
 <br><br>
 ## Servo Blaster library setup
@@ -142,50 +142,49 @@ Servo blaster allows you to control servos with GPIO pins instead of pwm pins
 you must also change the libary default timing method from "PWM" to using the "PCM" so it doesnt interfere with 3.5mm aux jack
 
 Copy and setup Servo blaster library
+```
+$ cd
 
-<b>$ cd</b>
+$ sudo git clone https://github.com/richardghirst/PiBits
 
-<b>$ sudo git clone https://github.com/richardghirst/PiBits</b>
+$ cd PiBits/ServoBlaster/user
 
-<b>$ cd PiBits/ServoBlaster/user</b>
+$ sudo make servod
 
-<b>$ sudo make servod</b>
+$ sudo make install
 
-<b>$ sudo make install</b>
+$ sudo chmod 755 servod
 
-<b>$ sudo chmod 755 servod</b>
-
-<b>$ sudo ./servod</b>
-
+$ sudo ./servod
+```
 Define pins
 
-<b>$ sudo ./servod --p1pins=11,16</b>
+`$ sudo ./servod --p1pins=11,16`
 
 
--Aditional config change
+### Aditional config change
 
-<b>$ sudo nano /etc/init.d/servoblaster</b>
-
+`$ sudo nano /etc/init.d/servoblaster`
+```
 ...
 
 case "$1" in
 start)
 
 /usr/local/sbin/servod $OPTS >/dev/null
-
+```
 change to:
 
-/usr/local/sbin/servod --p1pins=11,16 $OPTS >/dev/null
+`/usr/local/sbin/servod --p1pins=11,16 $OPTS >/dev/null`
 
-<br>
--To run this on startup use the follow in the rc.local file
+To run this on startup use the follow in the rc.local file
+```
+cd /home/pi/PiBits/ServoBlaster/user
 
-<b>cd /home/pi/PiBits/ServoBlaster/user</b>
+sudo ./servod --p1pins=11,16
 
-<b>sudo ./servod --p1pins=11,16</b>
-
-<b>cd</b>
-
+cd
+```
 <br><br>
 ## Darkice and Icecast2 setup for audio broadcast
 
