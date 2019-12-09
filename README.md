@@ -65,7 +65,7 @@ _____________________________________
 
 | Raspberry pi pin  | H-bridge pin |
 | ------------- | ------------- |
-| GPIO 18  |  logic for motor driver for speed information  |
+| 3.3V  |  logic for motor driver for speed information  |
 | GPIO 6  | connect to H-bridge- Motor left -  |
 | GPIO 5  | connect to H-bridge- Motor left +  |
 | GPIO 19  | Connect to H-bridge- Motor Right -  |
@@ -79,7 +79,7 @@ Red and black power connects to 4AA batteries power rail
 | Raspberry pi pin  | Servo|
 | ------------- | ------------- |
 | GPIO 17  |  connects to control tilt servo |
-| GPIO 18  |  connects to control pan servo |
+| GPIO 23  |  connects to control pan servo |
 
 connect 3.5 aux jack to portable mini speaker
 
