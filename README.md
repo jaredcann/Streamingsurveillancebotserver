@@ -1,4 +1,4 @@
-# Streamingsurveillancebotserver
+# Streaming Surveillance Bot Server
 
    The goal of this project is to create a room surveillance droid or robot that could be controlled remotely through a web page. The droid will be operated using a Pi 4B board and will comes with multitude of different features:
    
