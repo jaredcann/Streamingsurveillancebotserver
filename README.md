@@ -29,7 +29,7 @@ _____________________________________
 _____________________________________
 # Hook up Guide
 
-<b> H-bridge Pin Connections</b>
+## H-bridge Pin Connections
 
 | Raspberry pi pin  | H-bridge pin |
 | ------------- | ------------- |
@@ -40,7 +40,7 @@ _____________________________________
 | GPIO 13  | Connect to H-bridge- Motor right -  |
 | AA batery rail  | H-bridge power input  |
 
-<b>Connecting Servos</b>
+## Servos Wiring & Pin Connection
 
 Red and black power wires connects to 4AA batteries power rail
 
@@ -49,7 +49,7 @@ Red and black power wires connects to 4AA batteries power rail
 | GPIO 17  |  connects to control tilt servo |
 | GPIO 23  |  connects to control pan servo |
 
-<b> Connecting Misc. Parts </b>
+## Misc. Parts Connection
 
 * connect 3.5 aux jack to portable mini speaker
 
@@ -58,17 +58,15 @@ Red and black power wires connects to 4AA batteries power rail
 * Pi-camera to pi-4 camera ribbin cable connector
 
 * Connect Pi-4 Usb-C pwr port to portable cell phone power pack
-
+<br>
 ![Pi 4 Pinout](/Assets/pi4PinOut.png)
 
 ![Top view](/Assets/IMG_1382.jpg)
 
 ![Back view](/Assets/IMG_1389.jpg)
 
-
-Link to video Demo
-[https://youtu.be/eEnGLcFCr18](https://youtu.be/eEnGLcFCr18)
-
+<br>
+Link to video Demo [https://youtu.be/eEnGLcFCr18](https://youtu.be/eEnGLcFCr18)
 
 _____
 # Software setup
