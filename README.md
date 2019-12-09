@@ -82,7 +82,9 @@ Usb microphone to pi-4 usb input
 
 Pi-camera to pi-4 camera ribbin cable connector
 
-![Pi 4 Pinout!](/assets/pi4PinOut.png "Pi-4 Pinout")
+![Pi 4 Pinout](/assets/pi4PinOut.jpg)
+
+![Top view](/assets/IMG_1382.jpg)
 
 
 
