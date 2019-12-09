@@ -191,7 +191,7 @@ change to:
 
 /usr/local/sbin/servod --p1pins=11,16 $OPTS >/dev/null
 
-
+<br>
 -To run this on startup use the follow in the rc.local file
 
 <b>cd /home/pi/PiBits/ServoBlaster/user</b>
@@ -201,7 +201,7 @@ change to:
 <b>cd</b>
 
 <br><br>
-Darkice and Icecast2 setup for audio broadcast
+Darkice and Icecast2 setup for audio broadcast<br>
 To install Darkice into raspbian, first in terminal run,<br>
 
 <b>$ sudo apt-get update</b>
@@ -212,7 +212,7 @@ Then add a deb-src repository to your sources list at /home/pi:
 
 <b>$ wget https://github.com/x20mar/darkice-with-mp3-for-raspberry-pi/blob/master/darkice_1.0.1-999~mp3+1_armhf.deb?raw=true</b>
 
-<b>$ mv darkice_1.0.1-999~mp3+1_armhf.deb?raw=true darkice_1.0.1-999~mp3+1_armhf.deb</b>
+<b>$ mv darkice_1.0.1-999\~mp3+1_armhf.deb?raw=true darkice_1.0.1-999~mp3+1_armhf.deb</b>
 
 Install Darkice using the newly added repository
 
