@@ -18,9 +18,6 @@
 
 _____
 
-
-
-
    The goal of this project is to create a room surveillance droid or robot that could be controlled remotely through a web page. The droid will be operated using a Pi 4B board and will comes with multitude of different features:
    
    1. Web page GUI<br>
@@ -33,18 +30,9 @@ _____
    Allowing user to get live audio feedback of the room while surveilling
    5. Pan and tilt camera<br>
    Giving the user freedom to adjust camera viewing angle
-   
 
-______
-
-# Web Page Instruction from Dr. Hamblen
-
-The web page should explain the project idea, provide instructions, code, and hardware setups so that anyone could recreate your project along with photos and videos along with team member names. It might make sense to have a longer video on the web page (since presentation time is so short). Documentation somewhat like a notebook page can be added in Github. Be sure to setup Github so that a password logon is not needed to view the site.
-_________________
-
-
+_____________________________________
 # Hardware setup
-___________________________
 * Raspberry pi-4
 * [4WD DC-motor and chassis](https://www.amazon.com/Robot-Chassis-Motor-Arduino-Raspberry/dp/B07F759T89/ref=asc_df_B07F759T89/?tag=hyprod-20&linkCode=df0&hvadid=312123579962&hvpos=1o2&hvnetw=g&hvrand=4023891843030921682&hvpone=&hvptwo=&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=1015254&hvtargid=pla-572041604638&psc=1&tag=&ref=&adgrpid=65834404201&hvpone=&hvptwo=&hvadid=312123579962&hvpos=1o2&hvnetw=g&hvrand=4023891843030921682&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=1015254&hvtargid=pla-572041604638)
 * sparkfun h-bridge motor driver  
@@ -57,9 +45,7 @@ ___________________________
 
 
 _____________________________________
-
 # Hook up Guide
-
 
 <b> H-bridge Pin Connections</b>
 
@@ -74,20 +60,22 @@ _____________________________________
 
 <b>Connecting Servos</b>
 
-Red and black power connects to 4AA batteries power rail
+Red and black power wires connects to 4AA batteries power rail
 
 | Raspberry pi pin  | Servo|
 | ------------- | ------------- |
 | GPIO 17  |  connects to control tilt servo |
 | GPIO 23  |  connects to control pan servo |
 
-connect 3.5 aux jack to portable mini speaker
+<b> Connecting Misc. Parts </b>
 
-Usb microphone to pi-4 usb input
+* connect 3.5 aux jack to portable mini speaker
 
-Pi-camera to pi-4 camera ribbin cable connector
+* Usb microphone to pi-4 usb input
 
-Connect Pi-4 Usb-C pwr port to portable cell phone power pack
+* Pi-camera to pi-4 camera ribbin cable connector
+
+* Connect Pi-4 Usb-C pwr port to portable cell phone power pack
 
 ![Pi 4 Pinout](/Assets/pi4PinOut.png)
 
@@ -100,10 +88,10 @@ Link to video Demo
 [https://youtu.be/eEnGLcFCr18](https://youtu.be/eEnGLcFCr18)
 
 
-
+_____
 # Software setup
 
-Settting up and install wiringPi 
+Setting up and install wiringPi
 
 <b>git clone git://git.drogon.net/wiringPi</b>
 
@@ -112,7 +100,8 @@ Settting up and install wiringPi
 <b>./build</b>
 
 
-Settting up and install lighttpd 
+<br><br>
+Setting up and install lighttpd 
 
 <b>sudo apt-get -y install lighttpd</b>
 
@@ -126,13 +115,14 @@ Changing where the config file is looking for index.html file to "/var/www" inst
 
 Config file location " sudo nano /etc/lighttpd/lighttpd.conf "
 
-Start and stop lightpd service
+Start and stop lighttpd service
 
 <b>sudo /etc/init.d/lighttpd stop</b>
 
 <b>sudo /etc/init.d/lighttpd start</b>
 
 
+<br><br>
 Install and setup mjpg-streamer for Video streaming over web
 
 <b>sudo apt-get update</b>
@@ -158,14 +148,14 @@ Install and setup mjpg-streamer for Video streaming over web
 -Test stream<br>
 <b>LD_LIBRARY_PATH=/opt/mjpg-streamer/ /opt/mjpg-streamer/mjpg_streamer -i "input_raspicam.so -fps 15 -q 50 -x 640 -y 480" -o "output_http.so -p 9000 -w /opt/mjpg-streamer/www" </b>
 
-
-# Servo Blaster library setup
+<br><br>
+Servo Blaster library setup
 
 Servo blaster allows you to control servos with GPIO pins instead of pwm pins
 
 you must also change the libary default timing method from "PWM" to using the "PCM" so it doesnt interfere with 3.5mm aux jack
 
- Copy and setup Servo blaster library
+Copy and setup Servo blaster library
 
 <b>cd</b>
 
@@ -202,8 +192,6 @@ change to:
 /usr/local/sbin/servod --p1pins=11,16 $OPTS >/dev/null
 
 
-
-
 -To run this on startup use the follow in the rc.local file
 
 <b>cd /home/pi/PiBits/ServoBlaster/user</b>
@@ -211,6 +199,46 @@ change to:
 <b>sudo ./servod --p1pins=11,16</b>
 
 <b>cd</b>
+
+<br><br>
+Darkice and Icecast2 setup for audio broadcast
+To install Darkice into raspbian, first in terminal run,<br>
+
+<b>$ sudo apt-get update</b>
+
+Then add a deb-src repository to your sources list at /home/pi:
+
+<b>$ cd</b>
+
+<b>$ wget https://github.com/x20mar/darkice-with-mp3-for-raspberry-pi/blob/master/darkice_1.0.1-999~mp3+1_armhf.deb?raw=true</b>
+
+<b>$ mv darkice_1.0.1-999~mp3+1_armhf.deb?raw=true darkice_1.0.1-999~mp3+1_armhf.deb</b>
+
+Install Darkice using the newly added repository
+
+<b>$ sudo apt-get install libmp3lame0 libtwolame0</b>
+
+<b>$ sudo dpkg -i darkice_1.0.1-999~mp3+1_armhf.deb</b>
+
+Once it is installed, from the Github, download and move the config file for Darkice , darckice.cfg, and the shell script darkice.sh to /home/pi. Make darkice.sh into executable 
+
+<b>$ sudo chmod 777 /home/pi/darkice.sh</b>
+
+Then go to rc.local to execute this shell script on boot up
+
+<b>$ sudo nano /etc/rc.local</b>
+
+At the bottom of the page before exit 0 add
+
+<b>sudo /home/pi/darkice.sh</b>
+
+Once darkice is installed and configure, follow these steps to activate the Icecast2 server.
+
+<b>$ sudo apt-get install icecast2</b>
+
+Follow through the configuration window, I suggest keep the default setting and press yes and ok for all setting. Next, start the Icecast2 server service by typing this command 
+
+<b>$ sudo service icecast2 start</b>
 
 
 
