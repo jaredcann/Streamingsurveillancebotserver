@@ -1,23 +1,5 @@
 # Streamingsurveillancebotserver
 
-<b>Outline (Delete once web page finished):</b>
-1. Explain project idea
-2. Provide instructions, code, and hardware setups
-   - <i>add photo or graph that might help instructing</i>
-   - lighttpd setup
-   - wiringpi setup
-   - mjpeg (video streaming) setup
-   - servoblaster setup
-   - darkice and icecast2 setup
-   - speaker setup
-   - cgi file location and creation
-   - web page location and creation (index.html)
-   - hardware wiring 
-3. Photo and video of the final result
-
-
-_____
-
    The goal of this project is to create a room surveillance droid or robot that could be controlled remotely through a web page. The droid will be operated using a Pi 4B board and will comes with multitude of different features:
    
    1. Web page GUI<br>
@@ -115,9 +97,9 @@ Changing where the config file is looking for index.html file to "/var/www" inst
 
 Config file location " sudo nano /etc/lighttpd/lighttpd.conf "
 
-Other than configuring the path in lighttpd.conf to find the index.html, the cgi enable need to be configure too using<br><br>
+Other than configuring the path in lighttpd.conf to find the index.html, the cgi enable need to be configure too using
 
-<b>sudo nano /etc/lighttpd/conf-enabled/10-cgi.conf</b><br><br> 
+<b>sudo nano /etc/lighttpd/conf-enabled/10-cgi.conf</b>
 
 In the $http ["url"] section make sure the alias.url is directed to the right file path. In our case it should be /var/www/cgi-bin. Some people also have success configuring it in the lighttpd.conf file and follow the same step, but we have not try it.
 
@@ -248,7 +230,7 @@ Follow through the configuration window, I suggest keep the default setting and 
 <b>$ sudo service icecast2 start</b>
 
 <br><br>
-Omxplayer setup
+Omxplayer setup for audio warning signal output
 
 since omxplayer is build-in not much setup to be done other than some permission setting
 
@@ -260,51 +242,33 @@ To allow the actual audio to be streamed from web page the following command nee
 CGI file location and creation
 
 Once the library is intalled and setup, from the Github, download and move the cgi-bin folder into /var/www/
-to make sure all the file are executable, run,
+
+To make sure all the file are executable, run,
 
 <b>$ cd /var/www/cgi-bin</b>
 
 <b>$ sudo chmod 755 [filename]</b>
 
-For each of the cgi file such as,
+For each of the cgi file using their corresponding filename such as,
 
 <b>$ sudo chmod 755 forward.cgi</b>
 
-Other than the given shell script, When creating the shell script file make sure that the first line (the Hash-Bang Hack, #!/bin/bash) is not begin with a space. If the shell script is generated properly, when reopening it after saving, the auto-coloring will be applied.
+Other than the given shell script, when creating new shell script file make sure that the first line (the Hash-Bang Hack, #!/bin/bash) is not begin with a space. If the shell script is generated properly, when reopening it after saving, the auto-coloring will be applied.
 
 <br><br>
 Web page location
 
-With all the shell scripts and library in place, the web page content can be obtain by downloading and moving the index.html, indexMobile.html, and image file and folder to /var/www/ for the lighttpd web server to read. 
+With all the shell scripts and library in place, the web page content can be obtain by downloading and moving the index.html, indexMobile.html, sounds, and image file and folder to /var/www/ for the lighttpd web server to read. 
 
-______
 
-When creating the shell script file make sure that the first line (the Hash-Bang Hack) is not begin with a space. If the shell script is generated properly, when reopening it after saving, the auto-coloring will be applied.
 
-_______________________________________
 
-Other than configuring the path in lighttpd.conf to find the index.html, the cgi enable need to be configure too using<br><br>
 
-<b>sudo nano /etc/lighttpd/conf-enabled/10-cgi.conf</b><br><br> 
-
-In the $http ["url"] section make sure the alias.url is directed to the right file path. In our case it should be /var/www/cgi-bin. Some people also have success configuring it in the lighttpd.conf file and follow the same step, but we have not try it.
-      
 _______________________________________
 camera stream window added to Web page and start up stream added to rc.local
 
 
 LD_LIBRARY_PATH=/opt/mjpg-streamer/ /opt/mjpg-streamer/mjpg_streamer -i "input_raspicam.so -fps 15 -q 50 -x 640 -y 480" -o "output_http.so -p 9000 -w /opt/mjpg-streamer/www" &
-_______________________________________
- # Setup of Audio streaming
- 
- For audio streaming service used
- 
- To allow the actual audio to be streamed the following command needed to be used to give execution access to "vchiq"
-<b>sudo chmod 777 /dev/vchiq</b>
-https://stackoverflow.com/questions/42583835/failed-to-open-vchiq-instance/42584382
-
-
-Adding the microphone through bash commands
 
 ____________________________________________
 https://www.seeedstudio.com/blog/2019/08/08/how-to-use-usb-mini-microphone-on-raspberry-pi-4/
@@ -314,9 +278,4 @@ _____________________________________________________________
 The pwm messed up the sound from aux cord, must define explicit pwm signal in a precompiled .cpp program that way it doesnt leak and ruin the audio quality
 
 Wiring -pi does not allow for graceful using of the aux port for audio
-
-_____________________________________________________________
-audio live streaming/broadcasting with darkice and icecast2
-https://technicalustad.com/live-streaming-of-mp3-using-darkice-and-icecast2-on-raspberry-pi/
-
 
