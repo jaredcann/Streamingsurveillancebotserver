@@ -58,7 +58,8 @@ Red and black power wires connects to 4AA batteries power rail
 * Pi-camera to pi-4 camera ribbin cable connector
 
 * Connect Pi-4 Usb-C pwr port to portable cell phone power pack
-<br>
+
+
 ![Pi 4 Pinout](/Assets/pi4PinOut.png)
 
 ![Top view](/Assets/IMG_1382.jpg)
@@ -66,12 +67,12 @@ Red and black power wires connects to 4AA batteries power rail
 ![Back view](/Assets/IMG_1389.jpg)
 
 <br>
-Link to video Demo [https://youtu.be/eEnGLcFCr18](https://youtu.be/eEnGLcFCr18)
+Link to video [Demo](https://youtu.be/eEnGLcFCr18)  https://youtu.be/eEnGLcFCr18
 
 _____
 # Software setup
 
-Setting up and install wiringPi
+## Setting up and install wiringPi
 
 <b>$ git clone git://git.drogon.net/wiringPi</b>
 
@@ -79,9 +80,8 @@ Setting up and install wiringPi
 
 <b>$ ./build</b>
 
-
 <br><br>
-Setting up and install lighttpd 
+## Setting up and install lighttpd 
 
 <b>$ sudo apt-get -y install lighttpd</b>
 
@@ -107,9 +107,8 @@ Start and stop lighttpd service
 
 <b>$ sudo /etc/init.d/lighttpd start</b>
 
-
 <br><br>
-Install and setup mjpg-streamer for Video streaming over web
+## Install and setup mjpg-streamer for Video streaming over web
 
 <b>$ sudo apt-get update</b>
 
@@ -135,7 +134,7 @@ Install and setup mjpg-streamer for Video streaming over web
 <b>LD_LIBRARY_PATH=/opt/mjpg-streamer/ /opt/mjpg-streamer/mjpg_streamer -i "input_raspicam.so -fps 15 -q 50 -x 640 -y 480" -o "output_http.so -p 9000 -w /opt/mjpg-streamer/www" </b>
 
 <br><br>
-Servo Blaster library setup
+## Servo Blaster library setup
 
 Servo blaster allows you to control servos with GPIO pins instead of pwm pins
 
@@ -187,7 +186,7 @@ change to:
 <b>cd</b>
 
 <br><br>
-Darkice and Icecast2 setup for audio broadcast
+## Darkice and Icecast2 setup for audio broadcast
 
 To install Darkice into raspbian, first in terminal run,<br>
 
@@ -228,7 +227,7 @@ Follow through the configuration window, I suggest keep the default setting and 
 <b>$ sudo service icecast2 start</b>
 
 <br><br>
-Omxplayer setup for audio warning signal output
+## Omxplayer setup for audio warning signal output
 
 since omxplayer is build-in not much setup to be done other than some permission setting
 
@@ -237,7 +236,7 @@ To allow the actual audio to be streamed from web page the following command nee
 <b>$ sudo chmod 777 /dev/vchiq</b>
 
 <br></br>
-CGI file location and creation
+## CGI file location and creation
 
 Once the library is intalled and setup, from the Github, download and move the cgi-bin folder into /var/www/
 
@@ -254,7 +253,7 @@ For each of the cgi file using their corresponding filename such as,
 Other than the given shell script, when creating new shell script file make sure that the first line (the Hash-Bang Hack, #!/bin/bash) is not begin with a space. If the shell script is generated properly, when reopening it after saving, the auto-coloring will be applied.
 
 <br><br>
-Web page location
+## Web page location
 
 With all the shell scripts and library in place, the web page content can be obtain by downloading and moving the index.html, indexMobile.html, sounds, and image file and folder to /var/www/ for the lighttpd web server to read. 
 
