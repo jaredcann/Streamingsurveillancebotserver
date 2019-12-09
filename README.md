@@ -64,16 +64,23 @@ _____________________________________
 <b> H-bridge Pin Connections</b>
 
 GPIO 18- pwm for motor driver for speed information
+
 GPIO 6 - connect to H-bridge- Motor left -
+
 GPIO 5 - connect to H-bridge- Motor left +
+
 GPIO 19 -connect to H-bridge- Motor left -
+
 GPIO 13 -connect to H-bridge- Motor left +
+
 AA battery power rails- to H-Bridge power input
 
 <b>Connecting Servos</b>
 
 Red and black power connects to 4AA batteries power rail
+
 GPIO 17- connects to control tilt servo
+
 GPIO 23- connects to control pan servo
 
 connect 3.5 aux jack to portable mini speaker
@@ -96,8 +103,31 @@ Link to video Demo
 
 
 
+# Software setup
 
+<b>Settting up and install lighttpd </b>
 
+sudo apt-get -y install lighttpd
+
+sudo lighttpd-enable-mod cgi
+
+sudo lighttpd-enable-mod fastcgi
+
+<b>Changing the lighttpd config file </b>
+
+Changing where the config file is looking for index.html file to "/var/www" instead of its default of "/var/www/html"
+
+Config file location " sudo nano /etc/lighttpd/lighttpd.conf "
+
+<b>Start and stop lightpd service</b>
+
+sudo /etc/init.d/lighttpd stop
+
+sudo /etc/init.d/lighttpd start
+
+#Servo Blaster setup
+
+<b> </b>
 
 ______
 
@@ -142,7 +172,3 @@ audio live streaming/broadcasting with darkice and icecast2
 https://technicalustad.com/live-streaming-of-mp3-using-darkice-and-icecast2-on-raspberry-pi/
 
 
-Thhis is my edit opened at 12:12am - Jaredcanty 
-
-# Closing this edit 12:15 Jared Canty
-new edit for 12:18 Jaredcanty
