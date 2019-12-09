@@ -63,25 +63,23 @@ _____________________________________
 
 <b> H-bridge Pin Connections</b>
 
-GPIO 18- pwm for motor driver for speed information
-
-GPIO 6 - connect to H-bridge- Motor left -
-
-GPIO 5 - connect to H-bridge- Motor left +
-
-GPIO 19 -connect to H-bridge- Motor left -
-
-GPIO 13 -connect to H-bridge- Motor left +
-
-AA battery power rails- to H-Bridge power input
+| Raspberry pi pin  | H-bridge pin |
+| ------------- | ------------- |
+| GPIO 18  |  logic for motor driver for speed information  |
+| GPIO 6  | connect to H-bridge- Motor left -  |
+| GPIO 5  | connect to H-bridge- Motor left +  |
+| GPIO 19  | Connect to H-bridge- Motor Right -  |
+| GPIO 13  | Connect to H-bridge- Motor right -  |
+| AA batery rail  | H-bridge power input  |
 
 <b>Connecting Servos</b>
 
 Red and black power connects to 4AA batteries power rail
 
-GPIO 17- connects to control tilt servo
-
-GPIO 23- connects to control pan servo
+| Raspberry pi pin  | Servo|
+| ------------- | ------------- |
+| GPIO 17  |  connects to control tilt servo |
+| GPIO 18  |  connects to control pan servo |
 
 connect 3.5 aux jack to portable mini speaker
 
@@ -105,60 +103,60 @@ Link to video Demo
 
 # Software setup
 
-<b>Settting up and install wiringPi </b>
+Settting up and install wiringPi 
 
-git clone git://git.drogon.net/wiringPi
+<b>git clone git://git.drogon.net/wiringPi</b>
 
-cd wiringPi
+<b>cd wiringPi</b>
 
-./build
+<b>./build</b>
 
 
-<b>Settting up and install lighttpd </b>
+Settting up and install lighttpd 
 
-sudo apt-get -y install lighttpd
+<b>sudo apt-get -y install lighttpd</b>
 
-sudo lighttpd-enable-mod cgi
+<b>sudo lighttpd-enable-mod cgi</b>
 
-sudo lighttpd-enable-mod fastcgi
+<b>sudo lighttpd-enable-mod fastcgi</b>
 
-<b>Changing the lighttpd config file </b>
+Changing the lighttpd config file 
 
 Changing where the config file is looking for index.html file to "/var/www" instead of its default of "/var/www/html"
 
 Config file location " sudo nano /etc/lighttpd/lighttpd.conf "
 
-<b>Start and stop lightpd service</b>
+Start and stop lightpd service
 
-sudo /etc/init.d/lighttpd stop
+<b>sudo /etc/init.d/lighttpd stop</b>
 
-sudo /etc/init.d/lighttpd start
+<b>sudo /etc/init.d/lighttpd start</b>
 
 
-<b> Install and setup mjpg-streamer for Video streaming over web </b>
+Install and setup mjpg-streamer for Video streaming over web
 
-sudo apt-get update
+<b>sudo apt-get update</b>
 
-sudo apt-get upgrade
+<b>sudo apt-get upgrade</b>
 
-sudo apt-get install libjpeg62-turbo-dev 
+<b>sudo apt-get install libjpeg62-turbo-dev</b>
 
-sudo apt-get install cmake
+<b>sudo apt-get install cmake</b>
 
-git clone https://github.com/jacksonliam/mjpg-streamer.git ~/mjpg-streamer
+<b>git clone https://github.com/jacksonliam/mjpg-streamer.git ~/mjpg-streamer</b>
 
-cd ~/mjpg-streamer/mjpg-streamer-experimental
+<b>cd ~/mjpg-streamer/mjpg-streamer-experimental</b>
 
-make clean all
+<b>make clean all</b>
 
-sudo rm -rf /opt/mjpg-streamer
+<b>sudo rm -rf /opt/mjpg-streamer</b>
 
-sudo mv ~/mjpg-streamer/mjpg-streamer-experimental /opt/mjpg-streamer
+<b>sudo mv ~/mjpg-streamer/mjpg-streamer-experimental /opt/mjpg-streamer</b>
 
-sudo rm -rf ~/mjpg-streamer
+<b>sudo rm -rf ~/mjpg-streamer</b>
 
 -Test stream<br>
-LD_LIBRARY_PATH=/opt/mjpg-streamer/ /opt/mjpg-streamer/mjpg_streamer -i "input_raspicam.so -fps 15 -q 50 -x 640 -y 480" -o "output_http.so -p 9000 -w /opt/mjpg-streamer/www" 
+<b>LD_LIBRARY_PATH=/opt/mjpg-streamer/ /opt/mjpg-streamer/mjpg_streamer -i "input_raspicam.so -fps 15 -q 50 -x 640 -y 480" -o "output_http.so -p 9000 -w /opt/mjpg-streamer/www" </b>
 
 
 # Servo Blaster library setup
@@ -167,29 +165,30 @@ Servo blaster allows you to control servos with GPIO pins instead of pwm pins
 
 you must also change the libary default timing method from "PWM" to using the "PCM" so it doesnt interfere with 3.5mm aux jack
 
-<b> Copy and setup Servo blaster library</b>
+ Copy and setup Servo blaster library
 
-cd
+<b>cd</b>
 
-sudo git clone https://github.com/richardghirst/PiBits
+<b>sudo git clone https://github.com/richardghirst/PiBits</b>
 
-cd PiBits/ServoBlaster/user
+<b>cd PiBits/ServoBlaster/user</b>
 
-sudo make servod
+<b>sudo make servod</b>
 
-sudo make install
+<b>sudo make install</b>
 
-sudo chmod 755 servod
+<b>sudo chmod 755 servod</b>
 
-sudo ./servod
-<b>Define pins</b>
+<b>sudo ./servod</b>
 
-sudo ./servod --p1pins=11,16
+Define pins
+
+<b>sudo ./servod --p1pins=11,16</b>
 
 
 -Aditional config change
 
-sudo nano /etc/init.d/servoblaster
+<b>sudo nano /etc/init.d/servoblaster</b>
 
 ...
 
@@ -207,11 +206,11 @@ change to:
 
 -To run this on startup use the follow in the rc.local file
 
-cd /home/pi/PiBits/ServoBlaster/user
+<b>cd /home/pi/PiBits/ServoBlaster/user</b>
 
-sudo ./servod --p1pins=11,16
+<b>sudo ./servod --p1pins=11,16</b>
 
-cd
+<b>cd</b>
 
 
 
