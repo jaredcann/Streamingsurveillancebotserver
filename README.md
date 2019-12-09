@@ -62,20 +62,26 @@ _____________________________________
 
 
 ConnectPi-4 pins
+
 <b> H-bridge Pin Connections</b>
+
 GPIO 18- pwm for motor driver for speed information
 GPIO 6 - connect to H-bridge- Motor left -
 GPIO 5 - connect to H-bridge- Motor left +
 GPIO 19 -connect to H-bridge- Motor left -
 GPIO 13 -connect to H-bridge- Motor left +
 AA battery power rails- to H-Bridge power input
+
 <b>Connecting Servos</b>
+
 Red and black power connects to 4AA batteries power rail
 GPIO 17- connects to control tilt servo
 GPIO 23- connects to control pan servo
 
 connect 3.5 aux jack to portable mini speaker
+
 Usb microphone to pi-4 usb input
+
 Pi-camera to pi-4 camera ribbin cable connector
 
 
