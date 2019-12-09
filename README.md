@@ -82,13 +82,16 @@ Usb microphone to pi-4 usb input
 
 Pi-camera to pi-4 camera ribbin cable connector
 
-![Pi 4 Pinout](/assets/pi4PinOut.jpg)
+Connect Pi-4 Usb-C pwr port to portable cell phone power pack
 
-![Top view](/assets/IMG_1382.jpg)
+![Pi 4 Pinout](/Assets/pi4PinOut.png)
+
+![Top view](/Assets/IMG_1382.jpg)
+
+![Back view](/Assets/IMG_1389.jpg)
 
 
-
-
+youtube link to video
 
 
 
