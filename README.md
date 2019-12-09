@@ -140,3 +140,8 @@ Wiring -pi does not allow for graceful using of the aux port for audio
 _____________________________________________________________
 audio live streaming/broadcasting with darkice and icecast2
 https://technicalustad.com/live-streaming-of-mp3-using-darkice-and-icecast2-on-raspberry-pi/
+
+
+RiMMM
+
+Ricky marscel
