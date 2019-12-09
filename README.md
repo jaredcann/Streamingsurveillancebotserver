@@ -105,6 +105,15 @@ Link to video Demo
 
 # Software setup
 
+<b>Settting up and install wiringPi </b>
+
+git clone git://git.drogon.net/wiringPi
+
+cd wiringPi
+
+./build
+
+
 <b>Settting up and install lighttpd </b>
 
 sudo apt-get -y install lighttpd
@@ -125,9 +134,86 @@ sudo /etc/init.d/lighttpd stop
 
 sudo /etc/init.d/lighttpd start
 
-#Servo Blaster setup
 
-<b> </b>
+<b> Install and setup mjpg-streamer for Video streaming over web </b>
+
+sudo apt-get update
+
+sudo apt-get upgrade
+
+sudo apt-get install libjpeg62-turbo-dev 
+
+sudo apt-get install cmake
+
+git clone https://github.com/jacksonliam/mjpg-streamer.git ~/mjpg-streamer
+
+cd ~/mjpg-streamer/mjpg-streamer-experimental
+
+make clean all
+
+sudo rm -rf /opt/mjpg-streamer
+
+sudo mv ~/mjpg-streamer/mjpg-streamer-experimental /opt/mjpg-streamer
+
+sudo rm -rf ~/mjpg-streamer
+
+-Test stream<br>
+LD_LIBRARY_PATH=/opt/mjpg-streamer/ /opt/mjpg-streamer/mjpg_streamer -i "input_raspicam.so -fps 15 -q 50 -x 640 -y 480" -o "output_http.so -p 9000 -w /opt/mjpg-streamer/www" 
+
+
+# Servo Blaster library setup
+
+Servo blaster allows you to control servos with GPIO pins instead of pwm pins
+
+you must also change the libary default timing method from "PWM" to using the "PCM" so it doesnt interfere with 3.5mm aux jack
+
+<b> Copy and setup Servo blaster library</b>
+
+cd
+
+sudo git clone https://github.com/richardghirst/PiBits
+
+cd PiBits/ServoBlaster/user
+
+sudo make servod
+
+sudo make install
+
+sudo chmod 755 servod
+
+sudo ./servod
+<b>Define pins</b>
+
+sudo ./servod --p1pins=11,16
+
+
+-Aditional config change
+
+sudo nano /etc/init.d/servoblaster
+
+...
+
+case "$1" in
+start)
+
+/usr/local/sbin/servod $OPTS >/dev/null
+
+change to:
+
+/usr/local/sbin/servod --p1pins=11,16 $OPTS >/dev/null
+
+
+
+
+-To run this on startup use the follow in the rc.local file
+
+cd /home/pi/PiBits/ServoBlaster/user
+
+sudo ./servod --p1pins=11,16
+
+cd
+
+
 
 ______
 
