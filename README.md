@@ -93,21 +93,21 @@ _____
 
 Setting up and install wiringPi
 
-<b>git clone git://git.drogon.net/wiringPi</b>
+<b>$ git clone git://git.drogon.net/wiringPi</b>
 
-<b>cd wiringPi</b>
+<b>$ cd wiringPi</b>
 
-<b>./build</b>
+<b>$ ./build</b>
 
 
 <br><br>
 Setting up and install lighttpd 
 
-<b>sudo apt-get -y install lighttpd</b>
+<b>$ sudo apt-get -y install lighttpd</b>
 
-<b>sudo lighttpd-enable-mod cgi</b>
+<b>$ sudo lighttpd-enable-mod cgi</b>
 
-<b>sudo lighttpd-enable-mod fastcgi</b>
+<b>$ sudo lighttpd-enable-mod fastcgi</b>
 
 Changing the lighttpd config file 
 
@@ -115,35 +115,41 @@ Changing where the config file is looking for index.html file to "/var/www" inst
 
 Config file location " sudo nano /etc/lighttpd/lighttpd.conf "
 
+Other than configuring the path in lighttpd.conf to find the index.html, the cgi enable need to be configure too using<br><br>
+
+<b>sudo nano /etc/lighttpd/conf-enabled/10-cgi.conf</b><br><br> 
+
+In the $http ["url"] section make sure the alias.url is directed to the right file path. In our case it should be /var/www/cgi-bin. Some people also have success configuring it in the lighttpd.conf file and follow the same step, but we have not try it.
+
 Start and stop lighttpd service
 
-<b>sudo /etc/init.d/lighttpd stop</b>
+<b>$ sudo /etc/init.d/lighttpd stop</b>
 
-<b>sudo /etc/init.d/lighttpd start</b>
+<b>$ sudo /etc/init.d/lighttpd start</b>
 
 
 <br><br>
 Install and setup mjpg-streamer for Video streaming over web
 
-<b>sudo apt-get update</b>
+<b>$ sudo apt-get update</b>
 
-<b>sudo apt-get upgrade</b>
+<b>$ sudo apt-get upgrade</b>
 
-<b>sudo apt-get install libjpeg62-turbo-dev</b>
+<b>$ sudo apt-get install libjpeg62-turbo-dev</b>
 
-<b>sudo apt-get install cmake</b>
+<b>$ sudo apt-get install cmake</b>
 
-<b>git clone https://github.com/jacksonliam/mjpg-streamer.git ~/mjpg-streamer</b>
+<b>$ git clone https://github.com/jacksonliam/mjpg-streamer.git ~/mjpg-streamer</b>
 
-<b>cd ~/mjpg-streamer/mjpg-streamer-experimental</b>
+<b>$ cd ~/mjpg-streamer/mjpg-streamer-experimental</b>
 
-<b>make clean all</b>
+<b>$ make clean all</b>
 
-<b>sudo rm -rf /opt/mjpg-streamer</b>
+<b>$ sudo rm -rf /opt/mjpg-streamer</b>
 
-<b>sudo mv ~/mjpg-streamer/mjpg-streamer-experimental /opt/mjpg-streamer</b>
+<b>$ sudo mv ~/mjpg-streamer/mjpg-streamer-experimental /opt/mjpg-streamer</b>
 
-<b>sudo rm -rf ~/mjpg-streamer</b>
+<b>$ sudo rm -rf ~/mjpg-streamer</b>
 
 -Test stream<br>
 <b>LD_LIBRARY_PATH=/opt/mjpg-streamer/ /opt/mjpg-streamer/mjpg_streamer -i "input_raspicam.so -fps 15 -q 50 -x 640 -y 480" -o "output_http.so -p 9000 -w /opt/mjpg-streamer/www" </b>
@@ -157,28 +163,28 @@ you must also change the libary default timing method from "PWM" to using the "P
 
 Copy and setup Servo blaster library
 
-<b>cd</b>
+<b>$ cd</b>
 
-<b>sudo git clone https://github.com/richardghirst/PiBits</b>
+<b>$ sudo git clone https://github.com/richardghirst/PiBits</b>
 
-<b>cd PiBits/ServoBlaster/user</b>
+<b>$ cd PiBits/ServoBlaster/user</b>
 
-<b>sudo make servod</b>
+<b>$ sudo make servod</b>
 
-<b>sudo make install</b>
+<b>$ sudo make install</b>
 
-<b>sudo chmod 755 servod</b>
+<b>$ sudo chmod 755 servod</b>
 
-<b>sudo ./servod</b>
+<b>$ sudo ./servod</b>
 
 Define pins
 
-<b>sudo ./servod --p1pins=11,16</b>
+<b>$ sudo ./servod --p1pins=11,16</b>
 
 
 -Aditional config change
 
-<b>sudo nano /etc/init.d/servoblaster</b>
+<b>$ sudo nano /etc/init.d/servoblaster</b>
 
 ...
 
@@ -201,7 +207,8 @@ change to:
 <b>cd</b>
 
 <br><br>
-Darkice and Icecast2 setup for audio broadcast<br>
+Darkice and Icecast2 setup for audio broadcast
+
 To install Darkice into raspbian, first in terminal run,<br>
 
 <b>$ sudo apt-get update</b>
@@ -240,7 +247,35 @@ Follow through the configuration window, I suggest keep the default setting and 
 
 <b>$ sudo service icecast2 start</b>
 
+<br><br>
+Omxplayer setup
 
+since omxplayer is build-in not much setup to be done other than some permission setting
+
+To allow the actual audio to be streamed from web page the following command needed to be used to give execution access to "vchiq"
+
+<b>$ sudo chmod 777 /dev/vchiq</b>
+
+<br></br>
+CGI file location and creation
+
+Once the library is intalled and setup, from the Github, download and move the cgi-bin folder into /var/www/
+to make sure all the file are executable, run,
+
+<b>$ cd /var/www/cgi-bin</b>
+
+<b>$ sudo chmod 755 [filename]</b>
+
+For each of the cgi file such as,
+
+<b>$ sudo chmod 755 forward.cgi</b>
+
+Other than the given shell script, When creating the shell script file make sure that the first line (the Hash-Bang Hack, #!/bin/bash) is not begin with a space. If the shell script is generated properly, when reopening it after saving, the auto-coloring will be applied.
+
+<br><br>
+Web page location
+
+With all the shell scripts and library in place, the web page content can be obtain by downloading and moving the index.html, indexMobile.html, and image file and folder to /var/www/ for the lighttpd web server to read. 
 
 ______
 
